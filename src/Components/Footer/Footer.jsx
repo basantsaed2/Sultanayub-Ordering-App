@@ -27,10 +27,10 @@ const Footer = () => {
                 <FaPhoneAlt className="text-3xl text-mainColor bg-white rounded-full p-2"  />
                  <span>Phone: 16365</span>
                </li>
-               <li className="flex items-center space-x-2">
+               {/* <li className="flex items-center space-x-2">
                  <FaWhatsapp className="text-3xl text-mainColor bg-white rounded-full p-2"  />
                  <span>WhatsApp: +201069470088</span>
-              </li>
+              </li> */}
           </ul>
           {/* Social Media Links */}
           <div className="flex space-x-4 mt-4">
