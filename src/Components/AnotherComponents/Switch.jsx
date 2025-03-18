@@ -53,7 +53,7 @@ const StyledWrapper = styled.div`
   }
 
   input:checked + .slider {
-    background-color: #e7020a;
+    background-color: #d7030b;
   }
   
   input:checked + .slider:before {

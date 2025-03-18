@@ -11,7 +11,7 @@ export default {
         TextFontBold: ["Bold"],
       },
       colors: {
-        mainColor: "#e7020a",
+        mainColor: "#d7030b",
         secoundColor: "#6B6A6A",
         thirdColor: "#5E5E5E",
         AddText: "#5E5E5E",

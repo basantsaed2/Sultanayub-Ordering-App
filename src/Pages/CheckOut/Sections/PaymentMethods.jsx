@@ -64,7 +64,7 @@ const PaymentMethods = () => {
                                                                name="payment"
                                                                id={card.id}
                                                                style={{
-                                                                      accentColor: '#e7020a',
+                                                                      accentColor: '#d7030b',
                                                                       width: '20px',
                                                                       height: '20px',
                                                                }}

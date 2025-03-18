@@ -82,8 +82,8 @@ const Navbar = () => {
                                                         Menu
                                                  </Link>
                                                  <Link
-                                                        to=""
-                                                        className='w-full text-xl font-TextFontMedium text-gray-500 border-b-2 p-3 pb-1 pointer-events-none cursor-not-allowed'
+                                                        to={'menu'}
+                                                        className='w-full text-xl font-TextFontMedium text-mainColor border-b-2 p-3 pb-1'
                                                         onClick={() => setToggleOpen(false)}
                                                  >
                                                         Order Online

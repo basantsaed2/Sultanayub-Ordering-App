@@ -62,7 +62,7 @@ const StyledWrapper = styled.div`
   }
 
   .custom-checkbox:checked ~ .checkmark {
-    background-color: #e7020a;
+    background-color: #d7030b;
     box-shadow: 0 3px 7px rgba(33, 150, 243, 0.3);
   }
 

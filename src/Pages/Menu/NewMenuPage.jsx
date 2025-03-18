@@ -17,13 +17,13 @@ const NewMenuPage = () => {
   };
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-2 gap-4 p-4">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4">
       {menuImages.map((src, index) => (
         <div key={index} className="overflow-hidden rounded-lg">
           <img
             src={src}
             alt={`menu-item-${index}`}
-            className="w-full h-[550px] cursor-pointer transition-transform duration-300 hover:scale-110"
+            className="w-full lg:h-[520px] h-auto cursor-pointer transition-transform duration-300 hover:scale-110"
             onClick={() => setSelectedIndex(index)}
           />
         </div>
