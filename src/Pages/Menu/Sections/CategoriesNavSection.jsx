@@ -323,7 +323,7 @@ const CategoriesNavSection = () => {
             <Splide
                 options={{
                     type: 'slide',
-                    perPage: 6, // Adjust this value depending on how many grouped slides you want visible
+                    perPage: 2, // Adjust this value depending on how many grouped slides you want visible
                     perMove: 2,
                     pagination: true,
                     arrows: true,
@@ -333,8 +333,8 @@ const CategoriesNavSection = () => {
                     interval: 6000,
                     pauseOnHover: true,
                     breakpoints: {
-                    1024: { perPage: 6 },
-                    768: { perPage: 4 },
+                    1024: { perPage: 2 },
+                    768: { perPage: 2 },
                     480: { perPage: 2 },
                     },
                     
@@ -363,7 +363,7 @@ const CategoriesNavSection = () => {
                                 alt="category"
                             />
                             </div>
-                            <span className="text-xs md:text-md truncate">{category?.name || '-'}</span>
+                            <span className="text-md md:text-md truncate">{category?.name || '-'}</span>
                         </div>
                         ))}
                     </div>
