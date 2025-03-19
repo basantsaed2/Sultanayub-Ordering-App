@@ -77,7 +77,7 @@ const Carts = () => {
        const calculateTotal = () => {
               const baseTotal = (totalFoodPrice);
               // return taxType === 'excluded' ? baseTotal + tax : baseTotal;
-              return taxType === 'excluded' ? (baseTotal + tax) - discount : baseTotal;
+              return taxType === 'excluded' ? (baseTotal + tax) - discount : baseTotal- discount;
        };
 
        useEffect(() => {
