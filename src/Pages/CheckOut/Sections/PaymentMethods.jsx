@@ -83,7 +83,7 @@ const PaymentMethods = () => {
                                    </div>
 
                             </div>
-                            {(selectedPaymentMethod === 12 || selectedPaymentMethod === 11) && (
+                            {(selectedPaymentMethod === 1 || selectedPaymentMethod === 11) && (
 
                                    <div className="sm:w-full xl:w-6/12">
                                           <div className="sm:w-full xl:w-3/4 flex sm:flex-col xl:flex-row sm:items-start xl:items-center justify-center gap-0">
