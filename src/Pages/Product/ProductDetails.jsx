@@ -91,12 +91,14 @@ const ProductDetails = () => {
                      console.log('addonPrice', addonPrice)
 
                      if (existingAddon) {
-                            // If addon exists, increment its count
-                            return prev.map((addon) =>
-                                   addon.id === addonId
-                                          ? { ...addon, count: addon.count + 1 }  // Increase count
-                                          : addon
-                            );
+                            // // If addon exists, increment its count
+                            // return prev.map((addon) =>
+                            //        addon.id === addonId
+                            //               ? { ...addon, count: addon.count + 1 }  // Increase count
+                            //               : addon
+                            // );
+                            // If addon exists, remove it (uncheck)
+                            return prev.filter((addon) => addon.id !== addonId);
                      } else {
                             // If addon doesn't exist, add it with an initial count of 1
                             return [...prev, { id: addonId, count: 1, price: addonPrice }];
@@ -320,20 +322,20 @@ const ProductDetails = () => {
                                                                <div className='flex items-center gap-2'>
                                                                       <>
                                                                              <span className="sm:text-3xl lg:text-5xl text-mainColor font-TextFontMedium">
-                                                                                    {totalPrice}$
+                                                                                    {totalPrice} EGP
                                                                              </span>
                                                                              <span className="sm:text-3xl lg:text-5xl text-secoundColor font-TextFontMedium line-through decoration-secoundColor">
-                                                                                    {totalPriceProduct}$
+                                                                                    {totalPriceProduct} EGP
                                                                              </span>
                                                                       </>
                                                                </div>
                                                         ) : (
                                                                <span className="sm:text-3xl lg:text-5xl text-mainColor font-TextFontMedium">
-                                                                      {totalPrice}$
+                                                                      {totalPrice} EGP
                                                                </span>
                                                         )} */}
                                                         <span className="sm:text-3xl lg:text-5xl text-mainColor font-TextFontMedium">
-                                                               {totalPrice}$
+                                                               {totalPrice} EGP
                                                         </span>
                                                  </div>
 
@@ -370,7 +372,7 @@ const ProductDetails = () => {
                                                                              isChecked={checkedExtra.some((extra) => extra.id === x.id)}
                                                                       />
                                                                       <span className="text-xl font-TextFontRegular text-secoundColor mt-3">
-                                                                             {x?.name} - {x?.price?.toFixed(2)}$
+                                                                             {x?.name} - {x?.price?.toFixed(2)} EGP
                                                                       </span>
                                                                </div>
                                                         ))}
@@ -411,7 +413,7 @@ const ProductDetails = () => {
                                                                       />
 
                                                                       <span className="text-xl font-TextFontRegular text-secoundColor mt-3">
-                                                                             {addon?.name} - {addon?.price?.toFixed(2)}$
+                                                                             {addon?.name} - {addon?.price?.toFixed(2)} EGP
                                                                       </span>
 
                                                                       {checkedAddons.find((item) => item.id === addon.id) && (
@@ -445,20 +447,22 @@ const ProductDetails = () => {
                                                  {product?.variations.map((variation, index) => (
                                                         <div className="w-full flex items-center justify-start flex-wrap gap-2" key={index}>
                                                                <span className="text-mainColor text-3xl font-TextFontRegular">{variation?.name}:</span>
-                                                               <div className="w-full flex sm:flex-col lg:flex-row items-start justify-start gap-3">
+                                                               <div className="w-full flex flex-wrap sm:flex-row lg:flex-row items-start justify-start gap-3">
                                                                       {variation?.options.map((option) => (
                                                                              <div className='flex flex-col items-start justify-start gap-y-4' key={option.id}>
                                                                                     <div className="flex justify-start items-start">
-                                                                                           <span
-                                                                                                  className={`text-2xl font-TextFontRegular border-2 border-mainColor rounded-xl py-2 px-3 cursor-pointer transition-all duration-300 ease-in-out 
-                ${options.some((opt) => opt.id === option.id)
-                                                                                                                ? 'bg-mainColor text-white shadow-lg' // Selected state styling
-                                                                                                                : 'bg-white text-mainColor hover:bg-mainColor hover:text-white'
-                                                                                                         }`}
-                                                                                                  onClick={() => handleSetOption(option, variation)}
-                                                                                           >
-                                                                                                  {option.name}
-                                                                                           </span>
+                                                                                    <span
+                                                                                    className={`text-2xl font-TextFontRegular border-2 border-mainColor rounded-xl py-2 px-3 transition-all duration-300 ease-in-out 
+                                                                                    ${option.status === 0 
+                                                                                    ? 'opacity-30 cursor-not-allowed'  // Disable click and add opacity
+                                                                                    : options.some((opt) => opt.id === option.id)
+                                                                                           ? 'bg-mainColor text-white shadow-lg' // Selected state
+                                                                                           : 'bg-white text-mainColor hover:bg-mainColor hover:text-white cursor-pointer' // Normal state
+                                                                                    }`}
+                                                                                    onClick={option.status !== 0 ? () => handleSetOption(option, variation) : undefined} // Prevent clicks
+                                                                                    >
+                                                                                    {option.name}
+                                                                                    </span>
                                                                                     </div>
 
                                                                                     {/* Show extras when option is selected */}

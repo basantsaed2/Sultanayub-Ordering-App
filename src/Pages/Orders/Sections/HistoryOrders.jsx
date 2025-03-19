@@ -56,7 +56,7 @@ const HistoryOrders = () => {
                                                                              {order?.order_date} {new Date(order?.order_date + ' ' + order?.date).toLocaleTimeString('en-US', { hour12: true })}
                                                                       </span>
                                                                       <p className='text-secoundColor sm:text-lg xl:text-xl font-TextFontRegular'>Order <span className='text-mainColor sm:text-xl xl:text-2xl font-TextFontMedium'>#{order?.order_number}</span> </p>
-                                                                      <span className='text-secoundColor sm:text-lg xl:text-xl font-TextFontRegular'>{order?.amount} $</span>
+                                                                      <span className='text-secoundColor sm:text-lg xl:text-xl font-TextFontRegular'>{order?.amount} EGP</span>
                                                                       <span className='text-mainColor sm:text-lg xl:text-xl font-TextFontRegular'>{order?.payment_method?.name}</span>
                                                                </div>
                                                                {/* images */}

@@ -27,11 +27,11 @@ const CardItem = ({ product, index }) => {
        }
        return (
               <div
-                     className="flex flex-col min-h-[425px] max-h-[425px] items-start justify-between gap-y-2 bg-thirdBgColor rounded-2xl p-3 shadow-md sm:w-full md:w-[48%] lg:w-[48%] xl:w-[23%]"
+                     className="flex flex-col min-h-[425px] md:max-h-[425px] items-start justify-between gap-y-2 bg-white rounded-2xl p-3 shadow-md sm:w-full md:w-[48%] lg:w-[48%] xl:w-[23%]"
                      key={index}
               >
                      {/* Image */}
-                     <div className="relative rounded-xl min-h-56 max-h-56  w-full overflow-hidden shadow-md">
+                     <div className="relative rounded-xl min-h-56 md:max-h-56  w-full overflow-hidden shadow-md">
                             <img
                                    src={product?.image_link || '/src/assets/Images/RedLogo.jsx'}
                                    className=" w-full h-full object-cover object-center"
@@ -47,7 +47,7 @@ const CardItem = ({ product, index }) => {
                                    product?.discount?.type === 'precentage' ? (
                                           <span className='absolute top-5 -left-28 -rotate-45 shadow-md text-center w-full bg-thirdBgColor text-mainColor text-xl font-TextFontMedium'>{product?.discount?.amount || '0'}%</span>
                                    ) : (
-                                          <span className='absolute top-5 -left-28 -rotate-45 shadow-md text-center w-full bg-thirdBgColor text-mainColor text-xl font-TextFontMedium'>{product?.discount?.amount || '0'}$</span>
+                                          <span className='absolute top-5 -left-28 -rotate-45 shadow-md text-center w-full bg-thirdBgColor text-mainColor text-xl font-TextFontMedium'>{product?.discount?.amount || '0'} EGP</span>
                                    )
                             )}
                      </div>
@@ -67,15 +67,15 @@ const CardItem = ({ product, index }) => {
                             {product?.discount?.type === 'precentage' ? (
                                    <>
                                           <span className="text-xl text-mainColor font-TextFontMedium">
-                                                 {(product?.price - (product?.price * (product?.discount?.amount || 0) / 100)).toFixed(2)}$
+                                                 {(product?.price - (product?.price * (product?.discount?.amount || 0) / 100)).toFixed(2)} EGP
                                           </span>
                                           <span className="text-xl text-secoundColor font-TextFontMedium line-through decoration-secoundColor">
-                                                 {product?.price?.toFixed(2) || '0.00'}$
+                                                 {product?.price?.toFixed(2) || '0.00'} EGP
                                           </span>
                                    </>
                             ) : (
                                    <span className="text-xl text-mainColor font-TextFontMedium">
-                                          {product?.price?.toFixed(2) || '0.00'}$
+                                          {product?.price?.toFixed(2) || '0.00'} EGP
                                    </span>
                             )}
 

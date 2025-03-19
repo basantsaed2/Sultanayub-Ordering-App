@@ -1,58 +1,53 @@
 import { Splide, SplideSlide } from '@splidejs/react-splide';
-
-// Default theme
 import React, { useEffect, useState } from 'react';
 import '@splidejs/react-splide/css';
-import { LinkButton } from '../../../Components/Components';
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { setBanners } from '../../../Store/CreateSlices';
 
 const Banners = () => {
+  const dispatch = useDispatch();
+  const banners = useSelector(state => state.banner?.data);
+  const [bannerData, setBannerData] = useState([]);
 
-       const dispatch = useDispatch();
-       const banners = useSelector(state => state.banner?.data);
-       const [bannerData, setBannerData] = useState([]);
-       useEffect(() => {
-              setBannerData(banners);
-           }, [banners]);
-       return (
-              <div className="w-full pt-0 px-2 py-8 text-white flex flex-col items-center justify-start space-y-4">
-                    {/* Splide Carousel */}
-                     <Splide
-                         key={bannerData.length} // Forces re-initialization
-                         options={{
-                            type   : 'loop',
-                            autoplay: true,
-                            padding:'20%',
-                            interval: 3000,
-                            perPage: 1,
-                            pauseOnHover: true,
-                            arrows: false,
-                            pagination: true, // Enables pagination
-                            gap: '1rem',
-                            // perMove: 1, // Move 2 at a time 
-                            breakpoints: {
-                                   1024: { padding: '20%' }, // Adjust padding for medium screens
-                                   768: { padding: '10%' },  // Adjust padding for tablets
-                                   480: { padding: '5%' },   // Adjust padding for small screens
-                            },         
-                     }}
-                            // aria-label="Banners Images"
-                     >
-                         {bannerData.map((banner,index) => (
-                            <SplideSlide key={index} className="w-full overflow-hidden rounded-3xl ">
-                                   <img 
-                                   src={banner.image_link} 
-                                   className="w-full h-full object-fit max-h-80 md:max-h-96 rounded-3xl" 
-                                   // alt={banner.alt} 
-                                   />
-                            </SplideSlide>
-                            ))}
+  useEffect(() => {
+    setBannerData(banners);
+  }, [banners]);
 
-                     </Splide>
-              </div >
-       );
+  return (
+    <div className="w-full max-w-full pt-0 pb-2 px-2 py-8 text-white flex flex-col items-center justify-start space-y-4">
+      {/* Splide Carousel */}
+      <Splide
+        key={bannerData.length} // Forces re-initialization
+        className="w-full" // Ensure Splide takes full width
+        options={{
+          type: bannerData.length > 1 ? 'loop' : 'slide',
+          rewind: true,
+          autoplay: bannerData.length > 1,
+          padding: '0%', // Fixes width issue
+          interval: 3000,
+          perPage: 1,
+          pauseOnHover: true,
+          arrows: false,
+          pagination: bannerData.length > 1,
+          gap: '1rem',
+          breakpoints: {
+            1024: { padding: '0%' },
+            768: { padding: '0%' },
+            480: { padding: '1%' },
+          },
+        }}
+      >
+        {bannerData.map((banner, index) => (
+          <SplideSlide key={index} className="w-full max-w-full rounded-3xl">
+            <img
+              src={banner.image_link}
+              className="w-full h-auto max-h-80 md:max-h-96 object-cover rounded-3xl"
+              alt={`Banner ${index + 1}`}
+            />
+          </SplideSlide>
+        ))}
+      </Splide>
+    </div>
+  );
 };
 
 export default Banners;

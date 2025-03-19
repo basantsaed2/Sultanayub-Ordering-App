@@ -117,22 +117,22 @@ const Carts = () => {
 
                      <div className="w-full flex flex-col items-start justify-start gap-3">
                             <span className="w-full text-3xl font-TextFontMedium text-mainColor">
-                                   Total Food: {totalFoodPrice.toFixed(2)}$
+                                   Total Food: {totalFoodPrice.toFixed(2)} EGP
                             </span>
 
                             {taxType === 'excluded' && (
                                    <span className="w-full text-3xl font-TextFontMedium text-mainColor">
-                                          Tax: {tax.toFixed(2)}$
+                                          Tax: {tax.toFixed(2)} EGP
                                    </span>
                             )}
 
                             <span className="w-full text-3xl font-TextFontMedium text-mainColor">
-                                   Discount: {discount.toFixed(2)}$
+                                   Discount: {discount.toFixed(2)} EGP
                             </span>
 
                             <div className="w-full py-3 border-t-2 border-mainColor">
                                    <span className="w-full text-4xl font-TextFontSemiBold text-mainColor">
-                                          Total: {calculateTotal().toFixed(2)}$
+                                          Total: {calculateTotal().toFixed(2)} EGP
                                    </span>
                             </div>
                      </div>

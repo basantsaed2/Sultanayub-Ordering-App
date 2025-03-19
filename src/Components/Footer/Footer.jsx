@@ -31,6 +31,10 @@ const Footer = () => {
                  <FaWhatsapp className="text-3xl text-mainColor bg-white rounded-full p-2"  />
                  <span>WhatsApp: +201069470088</span>
               </li> */}
+               <li className="flex items-center space-x-2">
+                <FaMapMarkerAlt className="text-3xl text-mainColor bg-white rounded-full p-2" />
+                <span>Address: Al Garok, Fleming, Qism El-Raml, Alexandria Governorate, Egypt</span>
+              </li>
           </ul>
           {/* Social Media Links */}
           <div className="flex space-x-4 mt-4">

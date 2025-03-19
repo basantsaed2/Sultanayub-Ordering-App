@@ -82,7 +82,7 @@ const Cart = ({
                                    discount.type === 'precentage' ? (
                                           <span className='absolute top-6 -left-28 -rotate-45 text-center w-full bg-mainBgColor shadow-md text-mainColor sm:text-xl xl:text-2xl font-TextFontMedium'>{discount.amount || '0'}%</span>
                                    ) : (
-                                          <span className='absolute top-7 -left-32 -rotate-45 text-center w-full bg-mainBgColor shadow-md text-mainColor sm:text-xl xl:text-2xl font-TextFontMedium'>{discount.amount || '0'}$</span>
+                                          <span className='absolute top-7 -left-32 -rotate-45 text-center w-full bg-mainBgColor shadow-md text-mainColor sm:text-xl xl:text-2xl font-TextFontMedium'>{discount.amount || '0'}EGP</span>
                                    )
                             )}
                      </div>
@@ -95,7 +95,7 @@ const Cart = ({
                             </p>
                             <div className="flex items-center justify-start gap-2">
                                    <span className="sm:text-2xl lg:text-3xl text-mainColor font-TextFontSemiBold">
-                                          {passProductPrice}$
+                                          {passProductPrice} EGP
                                    </span>
                             </div>
                      </div>
@@ -156,7 +156,7 @@ const Cart = ({
                      {taxType === 'excluded' && tax && (
                             <div className="flex items-center absolute top-20 right-0 rounded-tl-2xl rounded-bl-2xl px-4 py-1 bg-mainColor ">
                                    <span className="sm:text-xl lg:text-2xl  text-white font-TextFontMedium">
-                                          Tax: {tax.type === 'precentage' ? `${tax.amount}%` : `${tax.amount}$`}
+                                          Tax: {tax.type === 'precentage' ? `${tax.amount}%` : `${tax.amount} EGP`}
                                    </span>
                             </div>
                      )}

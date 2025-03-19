@@ -146,7 +146,7 @@ const App = () => {
             <Navbar />
           </div>
           {/* Main Content Area */}
-          <div className="w-full">
+          <div className="w-full mb-5">
             <Outlet />
           </div>
           <Footer />
