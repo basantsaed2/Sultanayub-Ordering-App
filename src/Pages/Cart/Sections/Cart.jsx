@@ -95,7 +95,7 @@ const Cart = ({
                             </p>
                             <div className="flex items-center justify-start gap-2">
                                    <span className="sm:text-2xl lg:text-3xl text-mainColor font-TextFontSemiBold">
-                                          {passProductPrice} EGP
+                                          {productPrice} EGP
                                    </span>
                             </div>
                      </div>
