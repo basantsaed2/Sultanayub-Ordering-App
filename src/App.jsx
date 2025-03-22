@@ -6,7 +6,7 @@ import { PrimeReactProvider } from 'primereact/api';
 import 'primereact/resources/themes/lara-light-blue/theme.css';
 import { useGet } from './Hooks/useGet';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCategories, setCheckOutDetails, setProducts, setProductsDiscount, setProductsDiscountFilter, setProductsFilter, setSignUpType, setTaxType ,setBanners,setBranch} from './Store/CreateSlices';
+import {setLocations, setCategories, setCheckOutDetails, setProducts, setProductsDiscount, setProductsDiscountFilter, setProductsFilter, setSignUpType, setTaxType ,setBanners,setBranch} from './Store/CreateSlices';
 import { useEffect, useRef } from 'react';
 import { MaintenancePage } from './Pages/page';
 
@@ -42,6 +42,11 @@ const App = () => {
     url: 'https://sultanayubbcknd.food2go.online/customer/order_type',
   });
 
+  const { refetch: refetchLocations, loading: loadingLocationsData, data: dataLocations } = useGet({
+    url: 'https://sultanayubbcknd.food2go.online/customer/address',
+    required: true,
+  });
+
   useEffect(() => {
     refetchSignUp();
   }, [refetchSignUp]);
@@ -57,6 +62,10 @@ const App = () => {
   useEffect(() => {
     refetchBranchData();
   }, [refetchBranchData]);
+
+  useEffect(() => {
+    refetchLocations();
+  }, [refetchLocations]);
 
   useEffect(() => {
     if (user) {
@@ -131,6 +140,13 @@ const App = () => {
       console.log('Fetched Branches:', dataBranch.branches);
     }
   }, [dataBranch]);
+
+  useEffect(() => {
+    if (dataLocations && dataLocations.addresses) {
+      dispatch(setLocations(dataLocations.addresses));
+      console.log('Fetched Locations:', dataLocations.addresses);
+    }
+  }, [dataLocations]);
 
   return (
     <PrimeReactProvider>

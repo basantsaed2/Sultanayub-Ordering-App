@@ -26,6 +26,7 @@ import {
 } from "./Pages/page";
 import ProtectedLogin from "./ProtectedData/ProtectedLogin";
 import { AuthLayout } from "./Layouts/Layouts";
+import AddNewAddress from "./Pages/CheckOut/Sections/AddNewAddress";
 
 export const router = createBrowserRouter(
   [
@@ -136,6 +137,10 @@ export const router = createBrowserRouter(
             {
               path: '',
               element: <CheckOutPage />,
+            },
+            {
+              path: 'add_address',
+              element: <AddNewAddress />,
             }
           ]
         },
