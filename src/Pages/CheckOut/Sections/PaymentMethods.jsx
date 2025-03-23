@@ -70,7 +70,7 @@ const PaymentMethods = () => {
                                                                }}
                                                                onChange={() => setSelectedPaymentMethod(card.id)}
                                                         />
-                                                        <img src={card.logo_link} alt={card.name} className='w-10 h-10 object-cover object-center rounded-full' />
+                                                        <img src={card.logo_link} alt={card.name} className='w-16 h-16 object-contain rounded-full' />
                                                         <label
                                                                htmlFor={card.id}
                                                                className="text-secoundColor text-2xl font-TextFontRegular"
