@@ -33,7 +33,7 @@ const Carts = () => {
 
 
               // Calculate Total Food Price
-              const total = items.reduce((acc, item) => acc + (Number(item.passProductPrice) || 0), 0);
+              const total = items.reduce((acc, item) => acc + (Number(item.passProductPrice) * item.count || 0), 0);
 
 
               // Calculate Tax (Percentage or Value)
@@ -42,9 +42,9 @@ const Carts = () => {
                      const prices = item.passProductPrice;
 
                      if (item.tax?.type === 'precentage') {
-                            return acc + (prices * (item.tax.amount / 100));
+                            return acc + (prices * (item.tax.amount / 100) * item.count);
                      } else if (item.tax?.type === 'value') {
-                            return acc + (Number(item.tax.amount) || 0);
+                            return acc + (Number(item.tax.amount) * item.count || 0);
                      }
                      return acc;
               }, 0);
@@ -56,12 +56,12 @@ const Carts = () => {
                      console.log('priceWithoutAddons', priceWithoutAddons)
                      if (item.discount?.type === 'precentage') {
                             // Apply percentage discount to the price without addons
-                            return acc + (priceWithoutAddons * (item.discount.amount / 100));
+                            return acc + (priceWithoutAddons * (item.discount.amount / 100)  * item.count);
                      } else if (item.discount?.type === 'value') {
                             // Add fixed value discount
-                            return acc + (Number(item.discount.amount) || 0);
+                            return acc + (Number(item.discount.amount) * item.count || 0);
                      }
-                     return acc; // No discount
+                     return acc ; // No discount
               }, 0);
 
 
