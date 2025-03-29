@@ -313,6 +313,7 @@ const CategoriesNavSection = () => {
   const products = useSelector((state) => state.products?.data);
 
   const [activeTab, setActiveTab] = useState('All');
+  const [activeTabImage, setActiveTabImage] = useState(Image);
   const [activeSubTab, setActiveSubTab] = useState(null);
   const [categoriesFilter, setCategoriesFilter] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
@@ -342,6 +343,7 @@ const CategoriesNavSection = () => {
 
   const handleCategoryClick = (category) => {
     setActiveTab(category?.name);
+    setActiveTabImage(category.image_link)
     setActiveSubTab(null);
     if (category?.sub_categories?.length > 0) {
       setSubCategories(category.sub_categories);
@@ -434,7 +436,7 @@ const CategoriesNavSection = () => {
                         className="w-full h-full rounded-full object-cover"
                       />
                     </div>
-                    <div className="text-sm font-medium truncate">
+                    <div className="w-full text-sm font-medium truncate overflow-hidden whitespace-nowrap">
                       {category.name || '-'}
                     </div>
                   </div>
@@ -445,9 +447,22 @@ const CategoriesNavSection = () => {
         </Splide>
       </div>
 
+      <div className="w-full flex gap-2 mt-6 justify-center items-center">
+        <div>
+        <img
+          src={activeTabImage}
+          alt="category"
+          className="w-12 h-12 rounded-full object-cover"
+        />
+        </div>
+        <h1 className="text-xl font-extrabold tracking-wide text-mainColor">
+          {activeTab}
+        </h1>
+      </div>
+
       {/* Subcategories Slider */}
       {subCategories.length > 0 && (
-        <div className="w-full mt-6">
+        <div className="w-full">
           <Splide
             options={{
               type: 'slide',

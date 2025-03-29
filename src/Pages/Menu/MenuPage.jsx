@@ -8,7 +8,7 @@ import BannerSection from '../Home/Sections/BannerSection'
 const MenuPage = () => {
   return (
     <>
-      <div className="w-full flex flex-col bg-[#f5f5f5] items-center justify-center gap-y-7">
+      <div className="w-full flex flex-col bg-[#f5f5f5] items-center justify-center gap-y-3">
         {/* <TitleSection
           size={'5xl'}
           text={'Categories'}
