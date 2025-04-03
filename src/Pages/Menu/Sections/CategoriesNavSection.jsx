@@ -330,11 +330,14 @@ const CategoriesNavSection = () => {
   useEffect(() => {
     const updateItemsPerSlide = () => {
       const width = window.innerWidth;
-      if (width >= 1024) {
-        setItemsPerSlide(12); // 2 rows x 6 columns for big screens
+      if (width >= 1280) {
+        setItemsPerSlide(16); // 2 rows x 6 columns for big screens
+      } else if (width >= 640 && width <= 1280) {
+        setItemsPerSlide(12); // For medium screens: grid designed for 6 items per slide
       } else {
-        setItemsPerSlide(8); // 2 rows x 4 columns for small/medium screens
+        setItemsPerSlide(8); // For small screens: grid designed for 4 items per slide
       }
+  
     };
     updateItemsPerSlide();
     window.addEventListener('resize', updateItemsPerSlide);

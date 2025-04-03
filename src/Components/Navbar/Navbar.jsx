@@ -13,6 +13,7 @@ const Navbar = () => {
        const user = useSelector(state => state.user?.data);
        const [pages] = useState(['/auth/login', '/auth/sign_up', '/auth/login/forgot_password', '/auth/otp_verification']);
        const [toggleOpen, setToggleOpen] = useState(false);
+       const pickupLocation = useSelector(state => state.pickupLocation?.data || []); // Ensure it's an array or object
 
        return (
               <>
@@ -81,13 +82,23 @@ const Navbar = () => {
                                                  >
                                                         Menu
                                                  </Link>
-                                                 <Link
-                                                        to={'menu'}
+                                                 {/* <Link
+                                                        to={pickupLocation && (!Array.isArray(pickupLocation) || pickupLocation.length > 0) ? '/menu' : '/location'}
                                                         className='w-full text-xl font-TextFontMedium text-mainColor border-b-2 p-3 pb-1'
                                                         onClick={() => setToggleOpen(false)}
-                                                 >
+                                                        >
+                                                        Order Online
+                                                 </Link> */}
+                                                  <Link
+                                                        to={'/location'}
+                                                        className='w-full text-xl font-TextFontMedium text-mainColor border-b-2 p-3 pb-1'
+                                                        onClick={() => setToggleOpen(false)}
+                                                        >
                                                         Order Online
                                                  </Link>
+
+
+
                                                  <Link
                                                         to={'branches'}
                                                         className='w-full text-xl font-TextFontMedium text-mainColor border-b-2 p-3 pb-1'

@@ -295,9 +295,12 @@ const LandingPage = () => {
         </div>
 
         <div className="w-full flex items-center justify-center">
-            <div className="">
-                <SubmitButton handleClick={GoToMenu} text={'Done'} px ="px-20"/>
-            </div>
+        {(brancheId || locationId) && (
+    <div>
+        <SubmitButton handleClick={GoToMenu} text={'Done'} px="px-20" />
+    </div>
+)}
+
         </div>
     </div>
     </>
