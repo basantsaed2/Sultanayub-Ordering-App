@@ -65,7 +65,7 @@ const CheckOutPage = () => {
                                           <HeaderNavigate
                                                  title={'Checkout'}
                                           />
-                                          <Locations />
+                                          {/* <Locations /> */}
                                           <DetailsOrder />
                                           <PaymentMethods />
                                           <div className="w-full flex items-center justify-end">

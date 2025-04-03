@@ -43,6 +43,8 @@ const initialOrder = {
               products: [],
        },
 }
+const initialPickupLoctaion = { data: '', }
+
 
 /*  User */
 const userSlice = createSlice({
@@ -332,8 +334,21 @@ const locationSlice = createSlice({
        }
 })
 
-
-
+/* Tax Type */
+const pickupLocationSlice = createSlice({
+       name: "pickUpLocation",
+       initialState: initialPickupLoctaion,
+       reducers: {
+              setPickupLoctaion: (state, action) => {
+                     console.log("Setting Pickup Loctaion:", action.payload);
+                     state.data = action.payload;
+              },
+              removePickupLoctaion: (state) => {
+                     console.log("Removing Pickup Loctaion");
+                     state.data = '';
+              },
+       },
+});
 
 export const { setUser, removeUser } = userSlice.actions;
 export const { setSignUpType, removeSignUpType } = signUpTypeSlice.actions;
@@ -355,6 +370,7 @@ export const { setOrders } = ordersSlice.actions;
 export const { setBanners } = bannerSlice.actions;
 export const { setBranch } = branchSlice.actions;
 export const { setLocations } = locationSlice.actions;
+export const { setPickupLoctaion, removePickupLoctaion } = pickupLocationSlice.actions;
 
 export const userReducer = userSlice.reducer;
 export const signUpTypeReducer = signUpTypeSlice.reducer;
@@ -376,3 +392,4 @@ export const ordersReducer = ordersSlice.reducer;
 export const bannerReducer = bannerSlice.reducer;
 export const branchReducer = branchSlice.reducer;
 export const locationReducer = locationSlice.reducer;
+export const pickupLocationReducer = pickupLocationSlice.reducer;

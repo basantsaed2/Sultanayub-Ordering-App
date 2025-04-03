@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 const AddNewAddress = ({ update, setUpdate }) => {
   const { postData, loadingPost, response } = usePost({ url:`https://sultanayubbcknd.food2go.online/customer/address/add` });
   const allZones = useSelector(state => state.user?.data?.zones || []);
+  const allLocations = useSelector(state => state.location.data || []);
 
   const dropDownZones = useRef();
   const auth = useAuth();
@@ -95,14 +96,14 @@ const AddNewAddress = ({ update, setUpdate }) => {
     setZoneId(option.id);
     setStateZone(option.name);
   };
-
   useEffect(() => {
-    if (!loadingPost) {
-        if (response) {
-        navigate(-1); // Navigate back only when the response is successful
-        }
+    if (!loadingPost && response) {
+      navigate(-1); // Navigate back first
+      setTimeout(() => {
+        window.location.reload(); // Reload after a short delay
+      }, 300); // 500ms delay to allow navigation to take effect
     }
-    }, [loadingPost, response, navigate]);
+  }, [loadingPost, response, navigate]);  
 
   const handleReset = () => {
     setStreet('');

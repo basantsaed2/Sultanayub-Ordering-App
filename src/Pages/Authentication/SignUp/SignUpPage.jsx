@@ -116,7 +116,7 @@ const SignUpPage = () => {
                      console.log('responseSignUp', responseSignUp)
                      auth.login(responseSignUp.data)
                      dispatch(setOtpCode(''))
-                     navigate("/", { replace: true });
+                     navigate("/location", { replace: true });
               }
        }, [responseSignUp])
 

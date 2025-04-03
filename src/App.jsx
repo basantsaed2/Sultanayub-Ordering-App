@@ -31,7 +31,6 @@ const App = () => {
 
   const { refetch: refetchCheckOutDetails, loading: loadingCheckOutDetails, data: dataCheckOutDetails } = useGet({
     url: 'https://sultanayubbcknd.food2go.online/customer/order_type',
-    required: true,
   });
 
   const { refetch: refetchBannerData, loading: loadingBannerData, data: dataBanner } = useGet({
@@ -150,14 +149,14 @@ const App = () => {
 
   return (
     <PrimeReactProvider>
-      {loadingSignUp || loadingProducts || loadingCheckOutDetails || loadingBannerData ||loadingBranchData ? (
+      {loadingSignUp || loadingProducts || loadingCheckOutDetails || loadingBannerData ||loadingBranchData || loadingLocationsData ? (
         <div className="w-full h-screen flex justify-center items-center">
           <LoaderLogin />
         </div>
       ) : (
         <div
           ref={scrollContainerRef}
-          className='relative w-full bg-white flex flex-col items-center justify-between h-screen overflow-y-scroll overflow-x-hidden'>
+          className='relative w-full bg-white flex flex-col items-center h-screen overflow-y-scroll overflow-x-hidden'>
           <div className="sticky top-0 w-full z-30">
             <Navbar />
           </div>

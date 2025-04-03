@@ -45,3 +45,5 @@ export { default as Banners } from "./Menu/Sections/Banners";
 /* Branch */
 export { default as Branch } from "./Branch/Branch";
 
+//Landing Page
+export { default as LandingPage } from "./Home/LandingPage";

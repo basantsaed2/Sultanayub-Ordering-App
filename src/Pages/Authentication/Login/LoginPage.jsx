@@ -115,7 +115,7 @@ const LoginPage = () => {
               if (responseLogin) {
                      auth.login(responseLogin.data);
                      dispatch(setOtpCode(null));
-                     navigate('/', { replace: true });
+                     navigate('/location', { replace: true });
               }
        }, [responseLogin]);
 
@@ -124,7 +124,7 @@ const LoginPage = () => {
                      auth.login(responseNewLogin.data);
                      dispatch(setOtpCode(null));
                      dispatch(setNewPass(false));
-                     navigate('/', { replace: true });
+                     navigate('/location', { replace: true });
               }
        }, [responseNewLogin]);
 

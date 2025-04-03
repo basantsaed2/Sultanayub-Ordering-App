@@ -5,13 +5,14 @@ import { useAuth } from '../../Context/Auth'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setProductsFilter } from '../../Store/CreateSlices'
-
+import {SubmitButton} from '../Components'
 const CardItem = ({ product, index }) => {
        const auth = useAuth();
        const navigate = useNavigate();
 
        const dispatch = useDispatch();
        const products = useSelector(state => state.productsFilter.data);
+       const pickupLocation = useSelector(state => state.pickupLocation?.data || []); // Ensure it's an array or object
 
        const handleFavorite = (id) => {
               if (!auth.user) {
@@ -23,6 +24,26 @@ const CardItem = ({ product, index }) => {
                      dispatch(setProductsFilter(updatedProducts));
                      console.log('updatedProducts', updatedProducts);
                      console.log('id', id);
+              }
+       }
+
+       const handleSendOrder = (id) => {
+
+              if (!auth.user) {
+                     auth.toastError('You must be logged in to continue.')
+                     navigate('/auth/login', { replace: true })
+                     return;
+              }
+
+              // Check if `pickupLocation` has data
+              if (!pickupLocation || (Array.isArray(pickupLocation) && pickupLocation.length === 0)) {
+                     auth.toastError('Please select a pickup location before proceeding.');
+                     navigate(`/location`);
+                     return;
+              }  
+                     
+              else {
+                    navigate(`/product/${product?.id}`)
               }
        }
        return (
@@ -85,7 +106,8 @@ const CardItem = ({ product, index }) => {
                      {/* Buttons */}
                      <div className="flex items-center justify-between w-full gap-3">
                             <div className="w-full flex items-center justify-center">
-                                   <LinkButton width={true} to={`/product/${product?.id}`} text="Order Now" />
+                                   {/* <LinkButton width={true} to={`/product/${product?.id}`} text="Order Now" /> */}
+                                   <SubmitButton text="Order Now" handleClick={() => handleSendOrder(product?.id)} />
                             </div>
                             {/* <button
                                    type="button"

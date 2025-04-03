@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { removeProductsCard, removeUser, setUser } from "../Store/CreateSlices";
+import { removeProductsCard, removeUser, setUser,removePickupLoctaion } from "../Store/CreateSlices";
 
 // Create a context
 const AuthContext = createContext();
@@ -23,6 +23,7 @@ export const ContextProvider = ({ children }) => {
     setUserState(null);
     dispatch(removeUser()); // Remove from Redux
     dispatch(removeProductsCard()); // Remove from Redux
+    dispatch(removePickupLoctaion()); // Remove from Redux
     toast.success("Logged out successfully");
   };
 
