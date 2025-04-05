@@ -36,9 +36,13 @@ const LandingPage = () => {
   const [brancheId, setBrancheId] = useState('');
   const [locationId, setLocationId] = useState('');
   const [deliveryPrice, setDeliveryPrice] = useState('');
+
+  const key = brancheId ? 'branch_id' : 'address_id'; // Determine correct key
+  const value = brancheId || locationId; // Use the available value
+  
   const { refetch: refetchProducts, loading: loadingProducts, data: dataProducts } = useGet({
-    url: 'https://sultanayubbcknd.food2go.online/customer/home/web_products',
- });
+    url: `https://sultanayubbcknd.food2go.online/customer/home/web_products?${key}=${value}`,
+  });
  
  useEffect(() => {
     if (brancheId || locationId) {

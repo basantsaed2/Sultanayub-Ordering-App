@@ -48,7 +48,7 @@ const CardItem = ({ product, index }) => {
        }
        return (
               <div
-                     className="flex flex-col min-h-[425px] md:max-h-[425px] items-start justify-between gap-y-2 bg-white rounded-2xl p-3 shadow-md sm:w-full md:w-[48%] lg:w-[48%] xl:w-[23%]"
+                     className="flex flex-col min-h-[430px] md:max-h-[430px] items-start justify-between gap-y-2 bg-white rounded-2xl p-3 shadow-md w-full"
                      key={index}
               >
                      {/* Image */}

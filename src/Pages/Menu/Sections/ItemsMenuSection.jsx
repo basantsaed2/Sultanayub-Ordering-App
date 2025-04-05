@@ -7,7 +7,7 @@ const ItemsMenuSection = () => {
 
        return (
               <>
-                     <div className="flex p-4 pt-0 lg:p-8 flex-wrap items-center justify-start gap-3 w-full sm:flex-col sm:gap-5 lg:flex-row mb-8">
+                     <div className="flex p-4 pt-0 xl:p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 w-full mb-8">
                      {productsFilter.length > 0 ? (
                             productsFilter.map((product, index) => (
                                    <CardItem key={index} product={product} />
