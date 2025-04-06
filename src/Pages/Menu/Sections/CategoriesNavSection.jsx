@@ -11,8 +11,8 @@ const CategoriesNavSection = () => {
   const categories = useSelector((state) => state.categories?.data);
   const products = useSelector((state) => state.products?.data);
 
-  const [activeTab, setActiveTab] = useState('All');
-  const [activeTabImage, setActiveTabImage] = useState(Image);
+  const [activeTab, setActiveTab] = useState('');
+  const [activeTabImage, setActiveTabImage] = useState('');
   const [activeSubTab, setActiveSubTab] = useState(null);
   const [categoriesFilter, setCategoriesFilter] = useState([]);
   const [subCategories, setSubCategories] = useState([]);
@@ -25,6 +25,14 @@ const CategoriesNavSection = () => {
     setCategoriesFilter(categories);
   }, [categories]);
 
+  useEffect(() => {
+    if (categories && categories.length > 0) {
+      setActiveTab(categories[0]?.name || '');
+      setActiveTabImage(categories[0]?.image_link || '');
+      handleCategoryClick(categories[0]);
+    }
+  }, [categories]);
+  
   // Update itemsPerSlide based on window width
   useEffect(() => {
     const updateItemsPerSlide = () => {
@@ -76,13 +84,13 @@ const CategoriesNavSection = () => {
   };
 
   // Define the "All" category object
-  const allCategory = {
-    name: 'All',
-    image_link: Image,
-  };
+  // const allCategory = {
+  //   name: 'All',
+  //   image_link: Image,
+  // };
 
   // Combine the "All" category with the rest of your categories
-  const allCategories = [allCategory, ...categoriesFilter];
+  const allCategories = [...categoriesFilter];
 
   // Group categories into chunks based on itemsPerSlide
   const groupCategoriesByChunk = (categories, chunkSize) => {
@@ -123,25 +131,25 @@ const CategoriesNavSection = () => {
               <div className="w-full grid grid-cols-4 md:grid-cols-6 xl:grid-cols-8 gap-2 mb-3">
                 {group.map((category, index) => (
                   <div
-                    key={index}
-                    onClick={() => handleCategoryClick(category)}
-                    className={`
-                      cursor-pointer flex mt-3 flex-col items-center justify-start pt-2 px-1 py-8 rounded-full rounded-b-full min-h-18 max-w-18 md:w-24 min-h-38 max-h-38 border transition-all duration-300 transform hover:scale-105
-                      shadow-md hover:shadow-xl text-center hover:bg-mainColor hover:text-white
-                      ${activeTab === category.name ? 'bg-mainColor text-white' : 'bg-white text-black'}
-                    `}
-                  >
-                    <div className="flex justify-center mb-2 w-16 h-16 min-h-16 max-h-16 rounded-full">
-                      <img
-                        src={category.image_link}
-                        alt="category"
-                        className="w-full h-full rounded-full object-cover"
-                      />
-                    </div>
-                    <div className="w-full text-sm font-medium truncate overflow-hidden whitespace-nowrap">
-                      {category.name || '-'}
-                    </div>
+                  key={index}
+                  onClick={() => handleCategoryClick(category)}
+                  className={`
+                    cursor-pointer flex mt-3 flex-col items-center justify-start pt-2 px-1 py-6 rounded-full rounded-b-full min-h-18 max-w-18 md:w-24 min-h-38 max-h-38 border transition-all duration-300 transform hover:scale-105
+                    shadow-md hover:shadow-xl text-center hover:bg-mainColor hover:text-white
+                    ${activeTab === category.name ? 'bg-mainColor text-white' : 'bg-white text-black'}
+                  `}
+                >
+                  <div className="flex justify-center mb-2 w-16 h-16 min-h-16 max-h-16 rounded-full">
+                    <img
+                      src={category.image_link}
+                      alt="category"
+                      className="w-full h-full rounded-full object-cover"
+                    />
                   </div>
+                  <div className="w-full text-[10px] md:text-xs xl:text-sm  font-medium relative line-clamp-2 max-h-[3em] overflow-hidden">
+                    {category.name || '-'}
+                  </div>
+                </div>
                 ))}
               </div>
             </SplideSlide>
@@ -186,7 +194,7 @@ const CategoriesNavSection = () => {
             className="w-full"
           >
             {/* "All" Subcategory Tab */}
-            <SplideSlide>
+            {/* <SplideSlide>
               <div
                 onClick={() =>
                   handleCategoryClick(
@@ -200,7 +208,7 @@ const CategoriesNavSection = () => {
               >
                 All
               </div>
-            </SplideSlide>
+            </SplideSlide> */}
             {subCategories.map((subCategory, index) => (
               <SplideSlide key={index}>
                 <div

@@ -15,7 +15,7 @@ const HeaderNavigate = ({ title, handleNavigate }) => {
 
        return (
               <>
-                     <div className="w-full text-3xl md:text-4xl font-TextFontRegular text-mainColor flex items-center justify-start">
+                     <div className="w-full text-2xl md:text-4xl font-TextFontRegular text-mainColor flex items-center justify-start">
                             <IoIosArrowBack
                                    className='cursor-pointer'
                                    onClick={handleBack}

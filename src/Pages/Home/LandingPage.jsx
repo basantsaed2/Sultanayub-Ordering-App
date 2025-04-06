@@ -16,11 +16,15 @@ import SultanayubLogo from '../../assets/Images/SultanayubLogo.png'
 import { HeaderNavigate, LoaderLogin, SubmitButton } from '../../Components/Components'
 import {setPickupLoctaion,setCategories, setProducts, setProductsDiscount, setProductsDiscountFilter, setProductsFilter, setTaxType} from './../../Store/CreateSlices';
 import { useGet } from '../../Hooks/useGet';
+import { useAuth } from '../../Context/Auth'
+
 // Import your fetchLocations thunk action
 import { setLocations } from '../../Store/CreateSlices';
 const LandingPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  
+    const auth = useAuth();
   const order = useSelector(state => state?.order?.data || {});
   const products = useSelector(state => state?.productsCard?.data || []);
   const total = useSelector(state => state?.totalPrice?.data || 0);
@@ -72,6 +76,12 @@ const LandingPage = () => {
     }
   }, [orderTypes]);
 
+  useEffect(() => {
+    if ((orderTypeSelected === 'delivery' || orderTypeId === 3) && !auth.user) {  
+            navigate('/auth/login', { replace: true })
+     }    
+    }, [orderTypeSelected,orderTypeId]);
+
   useEffect(() => { console.log('locations', allLocations) }, [allLocations]);
   useEffect(() => { console.log('orderTypeSelected', orderTypeSelected) }, [orderTypeSelected]);
   useEffect(() => { console.log('orderTypeId', orderTypeId) }, [orderTypeId]);
@@ -101,7 +111,7 @@ const LandingPage = () => {
   };
 
   // Delete location and then refetch locations
-       const handleDelete = async (id, name) => {
+    const handleDelete = async (id, name) => {
        const success = await deleteData(`https://sultanayubbcknd.food2go.online/customer/address/delete/${id}`, `${name} Deleted Success.`);
        if (success) {
          // Filter out the deleted location and update the Redux state
@@ -130,7 +140,7 @@ const LandingPage = () => {
                         <span
                         key={type.id}
                         className={`flex min-w-40 h-40 flex-col items-center justify-center gap-2 text-xl font-TextFontRegular px-4 py-2 rounded-lg cursor-pointer border-2 transition-all ease-in-out duration-300
-                            ${orderTypeSelected === type.type ? 'text-mainColor bg-[#F6E7E7] border-[#F6E7E7]' : 'text-mainColor border-mainColor hover:border-[#F6E7E7] bg-white hover:bg-[#F6E7E7] hover:text-mainColor'}`}
+                            ${orderTypeSelected === type.type ?'text-mainColor border-mainColor hover:border-[#F6E7E7] bg-white hover:bg-[#F6E7E7] hover:text-mainColor' : 'text-mainColor bg-[#F6E7E7] border-[#F6E7E7]'}`}
                         onClick={() => {
                             setOrderTypeSelected(type.type);
                             setOrderTypeId(type.id);

@@ -141,7 +141,7 @@ const LoginPage = () => {
                                                  <>
                                                         <HeaderNavigate title={'LogIn'} />
                                                         <div className={`${newPassState ? 'mt-16' : 'mt-5'} flex w-full flex-col items-start justify-start gap-y-4`}>
-                                                               <span className='sm:text-4xl xl:text-5xl font-TextFontRegular text-secoundColor'>
+                                                               <span className='text-3xl xl:text-5xl font-TextFontRegular text-secoundColor'>
                                                                       {newPassState ? 'Set Your New Password' : 'Login to Sultanayub'}
                                                                </span>
                                                         </div>

@@ -85,7 +85,7 @@ const AddNewAddress = ({ update, setUpdate }) => {
       setZones([{ id: '', name: 'Select Zone' }]);
     }
     console.log('Zones', allZones);
-  }, [allZones]);
+  }, []);
 
   const handleOpenZones = () => {
     setIsOpenZone(!isOpenZone);
