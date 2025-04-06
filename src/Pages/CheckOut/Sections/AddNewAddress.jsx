@@ -8,7 +8,7 @@ import 'leaflet/dist/leaflet.css';
 import { FiHome, FiMapPin } from 'react-icons/fi';
 import { MdWork } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
-
+import { IoIosArrowBack } from "react-icons/io";
 const AddNewAddress = ({ update, setUpdate }) => {
   const { postData, loadingPost, response } = usePost({ url:`https://sultanayubbcknd.food2go.online/customer/address/add` });
   const allZones = useSelector(state => state.user?.data?.zones || []);
@@ -185,8 +185,16 @@ const AddNewAddress = ({ update, setUpdate }) => {
       ) : (
         <section className="p-4">
           {/* Title */}
-          <h1 className="text-3xl text-mainColor font-semibold">Add Address</h1>
-
+          <div className="flex items-center gap-3">
+            <IoIosArrowBack 
+              className="text-mainColor cursor-pointer hover:scale-110 transition-transform duration-200" 
+              size={28} 
+              onClick={() => navigate(-1)} 
+            />
+            <h1 className="text-2xl sm:text-3xl text-mainColor font-semibold">
+              Add Address
+            </h1>
+          </div>
           {/* Form */}
           <form onSubmit={handleZoneAdd}>
             <div>

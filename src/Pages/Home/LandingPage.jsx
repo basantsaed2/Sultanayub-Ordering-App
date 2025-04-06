@@ -121,16 +121,16 @@ const LandingPage = () => {
         <div className="w-full flex flex-col lg:flex-row gap-5 p-4">
 
             {/* Navbar Type Order */}
-            <div className="w-full lg:w-1/2 flex flex-col gap-5 justify-center gap-x-3">
+            <div className="w-full lg:w-1/2 flex flex-col gap-5 items-center justify-center gap-x-3 pt-4 md:p-6">
                 <h1 className='text-2xl font-semibold'>PickUP Or Delivery</h1>
 
-                <div className="w-full flex items-center gap-x-3">
+                <div className="w-full flex justify-center items-center gap-x-4 md:gap-x-6">
                     {orderTypes.map((type) => (
                     type.status === 1 && (
                         <span
                         key={type.id}
-                        className={`flex w-64 h-64 flex-col items-center justify-center gap-2 text-2xl font-TextFontRegular px-4 py-2 rounded-lg cursor-pointer border-2 border-mainColor transition-all ease-in-out duration-300
-                            ${orderTypeSelected === type.type ? 'text-white bg-mainColor ' : 'text-mainColor bg-white hover:bg-mainColor hover:text-white'}`}
+                        className={`flex min-w-40 h-40 flex-col items-center justify-center gap-2 text-xl font-TextFontRegular px-4 py-2 rounded-lg cursor-pointer border-2 transition-all ease-in-out duration-300
+                            ${orderTypeSelected === type.type ? 'text-mainColor bg-[#F6E7E7] border-[#F6E7E7]' : 'text-mainColor border-mainColor hover:border-[#F6E7E7] bg-white hover:bg-[#F6E7E7] hover:text-mainColor'}`}
                         onClick={() => {
                             setOrderTypeSelected(type.type);
                             setOrderTypeId(type.id);
@@ -158,108 +158,95 @@ const LandingPage = () => {
             {/* Locations */}
             {orderTypeId === 3 && (
             <>
-                <h2 className="text-3xl font-extrabold relative">
-                <span className="px-4 pb-2 inline-block text-mainColor from-mainColor to-secondaryColor border-b-4 border-mainColor">
-                    Select Address
-                </span>
-                </h2>
-                <div className='w-full flex '>
-                <AddButton handleClick={handleAddAddress} text="Add New Address" BgColor='mainColor' Color='white' iconColor='white' />
-            </div>
-                <div className="w-full max-w-6xl mx-auto grid grid-cols-1 xl:grid-cols-2 gap-3">
+                <h1 className='text-2xl font-semibold'>Select Address</h1>
+                <div className="w-full max-w-6xl mx-auto grid grid-cols-1 xl:grid-cols-1 gap-3">
                 {allLocations.map((location) => (
                     <div key={location.id} className="relative">
-                    <div
-                        className={`flex flex-col sm:flex-row items-center gap-4 p-4 rounded-xl cursor-pointer transition-all duration-300 shadow-md border 
-                        ${locationId === location.id 
-                            ? 'bg-mainColor text-white' 
-                            : 'bg-white text-mainColor border-mainColor hover:bg-mainColor hover:text-white'}`}
+                        <div
                         onClick={() => {
-                        setLocationId(location.id);
-                        setBrancheId('');
-                        setDeliveryPrice(location?.zone?.price || '');
+                            setLocationId(location.id);
+                            setBrancheId('');
+                            setDeliveryPrice(location?.zone?.price || '');
                         }}
-                    >
-                        <div className="flex-shrink-0">
-                        {location.type === 'Home' ? (
-                            <FiHome className="w-10 h-10" />
-                        ) : (
-                            <MdWork className="w-10 h-10" />
-                        )}
+                        className={`group w-full flex items-start gap-3 p-4 rounded-xl cursor-pointer transition-all duration-300 shadow-sm 
+                            ${locationId === location.id 
+                            ? 'bg-mainColor text-white ' 
+                            : 'bg-gray-100 text-black hover:bg-mainColor hover:text-white hover:border-mainColor'}`}
+                        >
+                        <div className="flex-shrink-0 p-2 bg-mainColor rounded-md group-hover:bg-mainColor transition">
+                            {location.type === 'Home' ? (
+                            <FiHome className="w-6 h-6 text-white" />
+                            ) : (
+                            <MdWork className="w-6 h-6 text-white" />
+                            )}
                         </div>
-                        <div className="flex flex-col text-sm space-y-1 h-36 overflow-hidden">
-                        <span className="line-clamp-2">
-                            <strong>Address:</strong> {location.address?.charAt(0).toUpperCase() + location.address?.slice(1)}
-                        </span>
-                        <span className="truncate">
-                            <strong>Building:</strong> {location.building_num?.charAt(0).toUpperCase() + location.building_num?.slice(1) || '-'}
-                        </span>
-                        <span className="truncate">
-                            <strong>Floor:</strong> {location.floor_num?.charAt(0).toUpperCase() + location.floor_num?.slice(1) || '-'}
-                        </span>
-                        <span className="truncate">
-                            <strong>Apt:</strong> {location.apartment?.charAt(0).toUpperCase() + location.apartment?.slice(1) || '-'}
-                        </span>
-                        <span className="line-clamp-1">
-                            <strong>Extra:</strong> {location.additional_data?.charAt(0).toUpperCase() + location.additional_data?.slice(1) || '-'}
-                        </span>
-                        <div className="mt-2 border-t border-gray-200 pt-2 flex items-center justify-between">
-                            <span className="text-xs font-semibold">Action:</span>
-                            <div className="flex items-center gap-3">
+
+                        <div className="flex flex-col text-sm w-full space-y-1">
+                            <p className="font-semibold line-clamp-1">
+                            {location.address?.charAt(0).toUpperCase() + location.address?.slice(1)}
+                            </p>
+                            <p className="text-xs line-clamp-1">
+                            <strong>Bldg:</strong> {location.building_num || '-'} &nbsp; | &nbsp;
+                            <strong>Floor:</strong> {location.floor_num || '-'} &nbsp; | &nbsp;
+                            <strong>Apt:</strong> {location.apartment || '-'}
+                            </p>
+                            <p className="text-xs line-clamp-1">
+                            <strong>Extra:</strong> {location.additional_data || '-'}
+                            </p>
+
+                            <div className="flex justify-between items-center pt-2 border-t border-gray-200 mt-2">
+                            <span className="text-xs font-medium">Zone Price: {location?.zone?.price || '-'}</span>
                             <button
-                                type="button"
                                 onClick={(e) => {
                                 e.stopPropagation();
                                 handleOpenDelete(location.id);
                                 }}
-                                className="transition-colors hover:text-red-600"
+                                className="transition hover:text-white"
                             >
-                                <MdDelete size="24" />
+                                <MdDelete size="18"/>
                             </button>
                             </div>
                         </div>
                         </div>
-                    </div>
-                    {openDelete === location.id && (
-                        <Dialog
-                        open={true}
-                        onClose={handleCloseDelete}
-                        className="relative z-10"
-                        >
-                        <DialogBackdrop className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
-                        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-                            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-                            <DialogPanel className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                                <div className="flex flex-col items-center justify-center bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
-                                <PiWarningCircle size="60" />
-                                <div className="mt-2 text-center">
-                                    You will delete location {location?.address || "-"}
+
+                        {openDelete === location.id && (
+                        <Dialog open={true} onClose={handleCloseDelete} className="relative z-10">
+                            <DialogBackdrop className="fixed inset-0 bg-black/30" />
+                            <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+                            <div className="flex min-h-full items-center justify-center p-4">
+                                <DialogPanel className="w-full max-w-sm rounded-xl bg-white shadow-lg">
+                                <div className="flex flex-col items-center px-6 py-6">
+                                    <PiWarningCircle size="50" className="text-mainColor mb-3" />
+                                    <div className="text-center text-gray-800">
+                                    Are you sure you want to delete this location?
+                                    <div className="mt-1 font-semibold text-sm">{location.address || '-'}</div>
+                                    </div>
                                 </div>
-                                </div>
-                                <div className="px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                                <button
-                                    className="inline-flex w-full justify-center rounded-md bg-mainColor px-6 py-3 text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto"
+                                <div className="flex justify-end gap-3 px-6 pb-4">
+                                    <button
+                                    className="bg-mainColor hover:bg-mainColor/90 text-white text-sm py-2 px-4 rounded-lg transition"
                                     onClick={() => handleDelete(location.id, location?.address)}
-                                >
+                                    >
                                     Delete
-                                </button>
-                                <button
-                                    type="button"
-                                    data-autofocus
+                                    </button>
+                                    <button
                                     onClick={handleCloseDelete}
-                                    className="mt-3 inline-flex w-full justify-center rounded-md bg-white px-6 py-3 text-sm font-medium text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 sm:mt-0 sm:w-auto"
-                                >
+                                    className="bg-gray-100 text-sm text-gray-700 hover:bg-gray-200 py-2 px-4 rounded-lg transition"
+                                    >
                                     Cancel
-                                </button>
+                                    </button>
                                 </div>
-                            </DialogPanel>
+                                </DialogPanel>
                             </div>
-                        </div>
+                            </div>
                         </Dialog>
-                    )}
+                        )}
                     </div>
-                ))}
+                    ))}
                 </div>
+                <div className='w-full flex justify-end'>
+                <AddButton handleClick={handleAddAddress} text="Add New Address"  Color='mainColor' iconColor='mainColor' />
+            </div>
             </>
             )}
 
@@ -270,8 +257,8 @@ const LandingPage = () => {
                 {allBranches.map((branche) => (
                 <div
                     key={branche.id}
-                    className={`w-full flex items-center justify-start gap-x-3 text-xl font-TextFontRegular px-3 py-3 rounded-xl cursor-pointer border-2 border-mainColor transition-all ease-in-out duration-300
-                    ${brancheId === branche.id ? 'text-white bg-mainColor ' : 'text-black bg-gray-50 hover:bg-mainColor hover:text-white'}`}
+                    className={`w-full flex items-center justify-start gap-x-3 text-xl font-TextFontRegular px-3 py-3 rounded-xl cursor-pointer transition-all ease-in-out duration-300
+                    ${brancheId === branche.id ? 'text-white bg-mainColor ' : 'text-black bg-gray-100 hover:bg-mainColor hover:text-white'}`}
                     onClick={() => {
                     setBrancheId(branche.id);
                     setDeliveryPrice('');
@@ -281,13 +268,13 @@ const LandingPage = () => {
                     <img
                     src={branche?.image_link || ''}
                     alt={branche?.name || 'Branch Image'}
-                    className={`w-20 h-20 rounded-full ${brancheId === branche?.id ? 'border-2 border-white' : 'border-2 border-mainColor'} object-cover object-center`}
+                    className={`w-14 h-14 md:w-20 md:h-20 rounded-full object-cover object-center`}
                     />
                     <div className="flex flex-col items-start justify-center">
                     <span className='sm:text-lg xl:text-xl font-TextFontRegular'>
                     {branche.name.charAt(0).toUpperCase() + branche.name.slice(1)}
                     </span>
-                    <span className='sm:text-md xl:text-lg font-TextFontRegular'>
+                    <span className='sm:text-xs xl:text-lg font-TextFontRegular'>
                         {branche.address.charAt(0).toUpperCase() + branche.address.slice(1)}
                     </span>
                     </div>

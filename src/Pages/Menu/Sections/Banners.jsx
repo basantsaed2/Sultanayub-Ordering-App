@@ -13,7 +13,7 @@ const Banners = () => {
   }, [banners]);
 
   return (
-    <div className="w-full max-w-full pt-0 pb-2 px-2 py-8 text-white flex flex-col items-center justify-start space-y-4">
+    <div className="w-full max-w-full pt-0 pb-2 md:px-2 py-8 text-white flex flex-col items-center justify-start space-y-4">
       {/* Splide Carousel */}
       <Splide
         key={bannerData.length} // Forces re-initialization
