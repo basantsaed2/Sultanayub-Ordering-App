@@ -61,7 +61,7 @@ const CardItem = ({ product, index }) => {
                             />
                             {/* Favorite Icon */}
                             <button className="absolute top-4 right-5">
-                                   <FaHeart className={`${product?.favourite ? 'text-mainColor' : 'text-white'} hover:text-mainColor transition-all duration-200 text-2xl`} onClick={() => handleFavorite(product?.id)} />
+                                   <FaHeart className={`${product?.favourite ? 'text-mainColor': 'text-red-400'} hover:text-mainColor transition-all duration-200 text-2xl`} onClick={() => handleFavorite(product?.id)} />
                             </button>
                             {product?.discount && (
 
